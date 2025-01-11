@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const orderSchema = new Schema({
     currentBuyNowProduct: { type: Schema.Types.Mixed, required: true },
     totalAmount: { type: Number },
-    orderId: { type: String,required:true },
+    orderId: { type: String, required: true },
     totalItems: { type: Number },
     paymentMethod: { type: String, required: true },
     address: { type: Schema.Types.Mixed },
