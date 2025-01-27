@@ -1,6 +1,7 @@
 const ProductSchema = require('../../model/Product');
 
 // fetch all products -- for both User & Admin panel
+// ⭐ GET - '/api/products'
 exports.fetchAllProducts = async (req, res) => {
     
     let query = ProductSchema.find({}).sort({ createdAt: -1 });
@@ -25,11 +26,13 @@ exports.fetchAllProducts = async (req, res) => {
 };
 
 // fetch particular product
+// ⭐ GET - '/api/products/:id'
 exports.fetchProductById = async (req, res) => {
     try {
-        let { id } = req.query;
+        let id = req.params.id;
         const product = await ProductSchema.findOne({ _id: id });
-        res.status(201).send(product);
+        
+        res.status(201).json(product);
 
     } catch (error) {
         res.status(500).send(error);

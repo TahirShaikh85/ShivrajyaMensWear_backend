@@ -1,6 +1,7 @@
 const OrderSchema = require('../../model/Order');
 
 // create new order (place order) - User
+// ⭐ POST - '/api/order'
 exports.placeOrder = async (req, res) => {
     const order = new OrderSchema(req.body);
     try {

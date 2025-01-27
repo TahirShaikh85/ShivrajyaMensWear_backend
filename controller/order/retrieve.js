@@ -1,6 +1,7 @@
 const OrderSchema = require('../../model/Order');
 
 // track order 
+// ⭐ GET - '/api/order/track'
 exports.trackOrder = async (req, res) => {
     try {
         if (!req.body || !req.body.orderIDorMobile) {

@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-// paymentRoutes.post("/verify", async (req, res) => {
+// // ⭐ POST - '/api/payment/verify'
 exports.verifyPayment = async (req, res) => {
     try {
         const

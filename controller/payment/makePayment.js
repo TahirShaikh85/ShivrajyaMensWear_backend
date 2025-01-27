@@ -2,13 +2,14 @@ const Razorpay = require("razorpay");
 const crypto = require('crypto');
 const ProductSchema = require('../../model/Product');
 
+// ⭐ POST - '/api/payment'
 exports.makePayment = async (req, res) => {
 	try {
 		const instance = new Razorpay({
 			key_id: process.env.RAZOR_PAY_KEY_ID,
 			key_secret: process.env.RAZOR_PAY_KEY_SECRET,
 		});
-		// console.log(req.body.orderDetails);
+		console.log(req.body.orderDetails);
 		const orderdetails = req.body.orderDetails
 		// receiving product id 
 		const buyNowProduct = await ProductSchema.findOne({ _id: orderdetails.id });
@@ -23,6 +24,9 @@ exports.makePayment = async (req, res) => {
 			currency: "INR",
 			receipt: crypto.randomBytes(10).toString("hex"),
 		};
+
+		console.log("😂😂", options);
+		
 
 		instance.orders.create(options, (error, order) => {
 			if (error) {
