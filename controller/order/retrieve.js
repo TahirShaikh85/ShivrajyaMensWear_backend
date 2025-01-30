@@ -1,14 +1,15 @@
 const OrderSchema = require('../../model/Order');
 
 // track order 
-// ⭐ GET - '/api/order/track'
+// ⭐ GET - '/api/order/track?constraint'
 exports.trackOrder = async (req, res) => {
     try {
-        if (!req.body || !req.body.orderIDorMobile) {
+        const { constraint } = req.query;
+        
+        if (!constraint) {
             return res.status(400).json({ error: "Please provide a valid order ID or mobile number" });
         }
 
-        const { orderIDorMobile } = req.body;
 
         const displayThis = {
             "currentBuyNowProduct.title": 1,
@@ -26,8 +27,8 @@ exports.trackOrder = async (req, res) => {
 
         const trackedOrder = await OrderSchema.findOne({
             $or: [
-                { orderId: { $regex: new RegExp(orderIDorMobile, "i") } },
-                { "address.phone": { $regex: new RegExp(orderIDorMobile) } }
+                { orderId: { $regex: new RegExp(constraint, "i") } },
+                { "address.phone": { $regex: new RegExp(constraint) } }
             ]
         }, displayThis);
 

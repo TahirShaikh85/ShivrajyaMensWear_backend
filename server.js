@@ -7,7 +7,7 @@ app.use(express.json());
 
 // cors policy
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:["http://localhost:5173", "https://main.d3qja738rfhqh5.amplifyapp.com"],
     methods:"GET, POST,PUT,DELETE ",
     credentials:true
 }));

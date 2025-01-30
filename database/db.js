@@ -5,6 +5,7 @@ mongoose.set('strictQuery', false)
 const Connect = async ()=>{
     try {
         const con = await mongoose.connect(process.env.MONGO_URI,{
+            dbName:'test',
             useNewUrlParser:true,
             useUnifiedTopology:true
         })
